@@ -56,6 +56,7 @@ def parse_args():
                         help='predict the answers for test set with trained model')
     parser.add_argument('--gpu', type=str, default='0',
                         help='specify gpu device')
+    parser.add_argument('--use_embe', type=int, default=0,help='is use embeddings vector file')
 
     train_settings = parser.add_argument_group('train settings')
     train_settings.add_argument('--optim', default='adam',
@@ -87,7 +88,6 @@ def parse_args():
     model_settings.add_argument('--max_a_len', type=int, default=200,
                                 help='max length of answer')
     model_settings.add_argument('--is_restore', type=int, default=0,help='is restore model from file')
-    model_settings.add_argument('--use_embe', type=int, default=0,help='is use embeddings vector file')
 
 
     path_settings = parser.add_argument_group('path settings')
