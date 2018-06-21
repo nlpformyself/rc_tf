@@ -141,7 +141,7 @@ def prepare(args):
 
     logger.info('Assigning embeddings...')
     # vocab.randomly_init_embeddings(args.embed_size)
-    vocab.load_pretrained_embeddings(embedding_path='../100_ver_not_pure.bin')
+    vocab.load_pretrained_embeddings(embedding_path='./100_ver_not_pure.bin')
 
     logger.info('Saving vocab...')
     with open(os.path.join(args.vocab_dir, 'vocab.data'), 'wb') as fout:
