@@ -145,7 +145,7 @@ class Vocab(object):
             embedding_path: the path of the pretrained embedding file
         """
         trained_embeddings = {}
-
+        import gzip
         with gzip.open(embedding_path, 'rt',encoding='utf-8') as f:
             for line in fin:
                 contents = line.strip().split()
