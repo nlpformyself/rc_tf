@@ -125,9 +125,9 @@ class RCModel(object):
         Employs two Bi-LSTMs to encode passage and question separately
         """
         with tf.variable_scope('passage_encoding'):
-            self.sep_p_encodes=highway(self.p_emb, size=None, scope="highway", dropout=self.dropout, reuse=None)
+            self.sep_p_encodes, _ = rnn('bi-lstm', self.p_emb, self.p_length, self.hidden_size)
         with tf.variable_scope('question_encoding'):
-            self.sep_q_encodes=highway(self.q_emb, size=None, scope="highway", dropout=self.dropout, reuse=None)
+            self.sep_q_encodes, _ = rnn('bi-lstm', self.q_emb, self.q_length, self.hidden_size)
         if self.use_dropout:
             self.sep_p_encodes = tf.nn.dropout(self.sep_p_encodes, self.dropout_keep_prob)
             self.sep_q_encodes = tf.nn.dropout(self.sep_q_encodes, self.dropout_keep_prob)
