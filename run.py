@@ -87,6 +87,8 @@ def parse_args():
     model_settings.add_argument('--max_a_len', type=int, default=200,
                                 help='max length of answer')
     model_settings.add_argument('--is_restore', type=int, default=0,help='is restore model from file')
+    model_settings.add_argument('--use_embe', type=int, default=0,help='is use embeddings vector file')
+
 
     path_settings = parser.add_argument_group('path settings')
     path_settings.add_argument('--train_files', nargs='+',
@@ -138,10 +140,12 @@ def prepare(args):
     filtered_num = unfiltered_vocab_size - vocab.size()
     logger.info('After filter {} tokens, the final vocab size is {}'.format(filtered_num,
                                                                             vocab.size()))
-
     logger.info('Assigning embeddings...')
-    # vocab.randomly_init_embeddings(args.embed_size)
-    vocab.load_pretrained_embeddings(embedding_path='./100_ver_not_pure.bin')
+    if args.use_embe:
+        vocab.load_pretrained_embeddings(embedding_path='./100_ver_not_pure.bin')
+    else:
+        vocab.randomly_init_embeddings(args.embed_size)
+    
 
     logger.info('Saving vocab...')
     with open(os.path.join(args.vocab_dir, 'vocab.data'), 'wb') as fout:
