@@ -146,7 +146,7 @@ class Vocab(object):
         """
         trained_embeddings = {}
         import gzip
-        with gzip.open(embedding_path, 'rt',encoding='utf-8') as f:
+        with gzip.open(embedding_path, 'rt',encoding='utf-8') as fin:
             for line in fin:
                 contents = line.strip().split()
                 token = contents[0].decode('utf8')
