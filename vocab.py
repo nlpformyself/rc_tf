@@ -149,7 +149,7 @@ class Vocab(object):
         with gzip.open(embedding_path, 'rt',encoding='utf-8') as fin:
             for line in fin:
                 contents = line.strip().split()
-                token = contents[0].decode('utf8')
+                token = contents[0] #.decode('utf8')
                 if token not in self.token2id:
                     continue
                 trained_embeddings[token] = list(map(float, contents[1:]))
