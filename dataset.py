@@ -106,9 +106,8 @@ class BRCDataset(object):
 
                             correct_preds = sum(title_common_with_question_char.values())
                             recall_tq_char = 0 if correct_preds == 0 else float(correct_preds) / len(q_char_tokens)
-
-                            recall_wrt_question = (recall_eq + recall_eq_char + recall_tq + recall_tq_char) / 4
-
+                            recall_wrt_question = float(recall_eq + recall_eq_char) / 2
+                            #recall_wrt_question = (recall_eq + recall_eq_char + recall_tq + recall_tq_char) / 4
                             para_infos.append((para_tokens, recall_wrt_question, len(para_tokens)))
                         para_infos.sort(key=lambda x: (-x[1],x[2]))
                         fake_passage_tokens = []
